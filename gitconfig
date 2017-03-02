@@ -1,9 +1,9 @@
 [user]
-	name = Eric Pinto
-	email = ericpinto1985@gmail.com
+	name = Carlos Escura
+	email = xxxxxx@gmail.com
 [core]
 	editor = vim
-	excludesfile = ~/.gitignore_global
+	excludesfile = ~/.gitignore
 [merge]
 	tool = vimdiff
 [color]
@@ -41,5 +41,4 @@
         tags = for-each-ref --count=10 --sort=-taggerdate --format=' %(tag)  -->  %(*authordate)   %(*authoremail)' refs/tags
 # whatthecommit.com alias
         ciw = !git add -A && git commit -m \"$(curl -s whatthecommit.com/index.txt)\"
-[init]
-        templatedir = ~/git-templates
+
