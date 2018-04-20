@@ -1,9 +1,9 @@
 [user]
 	name = Carlos Escura
-	email = xxxxxx@gmail.com
+	email = carlosescura@gmail.com
 [core]
 	editor = vim
-	excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore_global
 [merge]
 	tool = vimdiff
 [color]
