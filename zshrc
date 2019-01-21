@@ -7,7 +7,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="agnoster-carlos"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -63,16 +63,13 @@ plugins=(
   zsh-nvm
   zsh-autosuggestions
   zsh-syntax-highlighting
+  minikube
+  aws
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -80,9 +77,6 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
@@ -92,10 +86,10 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
 alias zshconfig="vi ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#
+alias assume-role='function(){eval $(command assume-role $@);}'
+alias flush-dns='sudo killall -HUP mDNSResponder;sudo killall mDNSResponderHelper;sudo dscacheutil -flushcache'
+
 
 # AWS CLI and Python bin
 export PATH="$PATH:$HOME/Library/Python/3.7/bin"
@@ -106,12 +100,10 @@ export NVM_LAZY_LOAD=true
 #export NVM_AUTO_USE=true
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-
 # Android & Ionic config
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home"
 export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
-
 
 # Load pyenv
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -119,3 +111,10 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
+
+# added by travis gem
+[ -f /Users/yc00069/.travis/travis.sh ] && source /Users/yc00069/.travis/travis.sh
+
+# Go configuration
+export GOPATH=$HOME/code
+export PATH=$PATH:$GOPATH/bin

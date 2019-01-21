@@ -42,3 +42,5 @@
 # whatthecommit.com alias
         ciw = !git add -A && git commit -m \"$(curl -s whatthecommit.com/index.txt)\"
 
+[fetch]
+	prune = true
