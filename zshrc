@@ -9,11 +9,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="agnoster-carlos"
 
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
@@ -49,7 +44,7 @@ ZSH_THEME="agnoster-carlos"
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="dd.mm.yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -62,9 +57,13 @@ plugins=(
   git
   zsh-nvm
   zsh-autosuggestions
-  zsh-syntax-highlighting
   minikube
+  kubectl
   aws
+  helm
+  docker-compose
+  docker
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -87,7 +86,7 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 alias zshconfig="vi ~/.zshrc"
-alias assume-role='function(){eval $(command assume-role $@);}'
+alias assume-role='function(){eval $(command assume-role -duration 10h $@);}'
 alias flush-dns='sudo killall -HUP mDNSResponder;sudo killall mDNSResponderHelper;sudo dscacheutil -flushcache'
 
 
@@ -102,7 +101,7 @@ export NVM_LAZY_LOAD=true
 
 # Android & Ionic config
 export ANDROID_HOME="$HOME/Library/Android/sdk"
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home"
 export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
 
 # Load pyenv
@@ -112,9 +111,16 @@ fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 
-# added by travis gem
-[ -f /Users/yc00069/.travis/travis.sh ] && source /Users/yc00069/.travis/travis.sh
-
 # Go configuration
 export GOPATH=$HOME/code
 export PATH=$PATH:$GOPATH/bin
+
+# Kubesh in path
+export PATH="$PATH:~/.kubesh/bin"
+
+# Kubernetes shortcuts
+alias kubenamespace='kubectl config set-context $(kubectl config current-context) --namespace=$@'
+
+if [[ -f ~/.zshconfig_private ]]; then
+    source ~/.zshconfig_private
+fi

@@ -1,5 +1,5 @@
 [user]
-	name = Carlos Escura
+	name = carlosescura
 	email = carlosescura@gmail.com
 [core]
 	editor = vim
@@ -44,3 +44,5 @@
 
 [fetch]
 	prune = true
+[credential]
+	helper = osxkeychain
