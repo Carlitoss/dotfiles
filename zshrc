@@ -83,10 +83,12 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
+
 alias zshconfig="vi ~/.zshrc"
 alias assume-role='function(){eval $(command assume-role -duration 10h $@);}'
 alias flush-dns='sudo killall -HUP mDNSResponder;sudo killall mDNSResponderHelper;sudo dscacheutil -flushcache'
+alias kubenamespace='kubectl config set-context $(kubectl config current-context) --namespace=$@'
+alias vscode="/Applications/Visual\ Studio\ Code.app/contents/Resources/app/bin/code"
 
 
 # AWS CLI and Python bin
@@ -97,11 +99,6 @@ export NVM_DIR="$HOME/.nvm"
 export NVM_LAZY_LOAD=true
 #export NVM_AUTO_USE=true
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-# Android & Ionic config
-export ANDROID_HOME="$HOME/Library/Android/sdk"
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home"
-export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
 
 # Load pyenv
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -116,9 +113,6 @@ export PATH=$PATH:$GOPATH/bin
 
 # Kubesh in path
 export PATH="$PATH:~/.kubesh/bin"
-
-# Kubernetes shortcuts
-alias kubenamespace='kubectl config set-context $(kubectl config current-context) --namespace=$@'
 
 if [[ -f ~/.zshconfig_private ]]; then
     source ~/.zshconfig_private
