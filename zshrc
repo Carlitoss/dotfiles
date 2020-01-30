@@ -92,7 +92,7 @@ alias vscode="/Applications/Visual\ Studio\ Code.app/contents/Resources/app/bin/
 
 
 # AWS CLI and Python bin
-export PATH="$PATH:$HOME/Library/Python/3.7/bin"
+export PATH=~/.local/bin:$PATH
 
 # NVM configuration
 export NVM_DIR="$HOME/.nvm"
