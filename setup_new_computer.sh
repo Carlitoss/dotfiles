@@ -36,6 +36,11 @@ echo "# Installing homebrew..."
 # Install brew tools
 brew install zsh
 brew install wget
+brew install pyenv
+brew install pyenv-virtualenv
+
+pyenv install 3.7.6
+pyenv global 3.7.6
 
 echo "# Installing Powerline fonts..."
 # clone
@@ -94,3 +99,15 @@ chsh -s $(which zsh)
 
 # LINK .zshrc
 check_and_link "zshrc" ".zshrc"
+
+
+################ POST-INSTALL NOTES ################
+
+echo "Remember to install AWS CLI in a new session with: "
+echo "pip3 install awscli --upgrade --user"
+
+echo "____________________"
+echo "____________________"
+echo "______FINISHED______"
+echo "____________________"
+echo "____________________"
