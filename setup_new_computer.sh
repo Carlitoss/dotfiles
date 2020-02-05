@@ -53,8 +53,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 echo "# Installing zsh-autosuggestions..."
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-echo "# Installing zsh-sintax-highlighter..."
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+echo "# Installing fast-syntax-highlighting..."
+git clone https://github.com/zdharma/fast-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
 
 ##### K8s #####
 echo "Installing kubectl"
@@ -62,6 +62,10 @@ brew install kubectl
 
 echo "Installing kubens and kubectx"
 brew install kubectx
+
+#### AWS ####
+echo "Installing assume-role"
+brew install remind101/formulae/assume-role
 
 ####################################################
 ############ LINKS AND CUSTOM SETTINGS #############
@@ -85,4 +89,8 @@ mkdir -p ~/.ssh
 check_and_copy "ssh/config" ".ssh/config"
 
 echo "Changing default shell to zsh"
+echo $(which zsh) | sudo tee -a /etc/shells
 chsh -s $(which zsh)
+
+# LINK .zshrc
+check_and_link "zshrc" ".zshrc"

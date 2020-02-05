@@ -62,7 +62,7 @@ plugins=(
   helm
   docker-compose
   docker
-  zsh-syntax-highlighting
+  fast-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -85,7 +85,7 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 
 alias zshconfig="vi ~/.zshrc"
-alias assume-role='function(){eval $(command assume-role -duration 10h $@);}'
+alias assume-role='function(){eval $(command assume-role $@);}'
 alias flush-dns='sudo killall -HUP mDNSResponder;sudo killall mDNSResponderHelper;sudo dscacheutil -flushcache'
 alias kubenamespace='kubectl config set-context $(kubectl config current-context) --namespace=$@'
 alias vscode="/Applications/Visual\ Studio\ Code.app/contents/Resources/app/bin/code"

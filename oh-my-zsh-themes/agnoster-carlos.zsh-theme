@@ -251,7 +251,7 @@ build_prompt() {
 local right_prompt=""
 function precmd() {
   if (( ${+ASSUMED_ROLE} )); then
-    right_prompt="%{$fg[green]%}$ASSUMED_ROLE%{$reset_color%}"
+    right_prompt="%{$fg[white]%}$ASSUMED_ROLE%{$reset_color%}"
   fi
 }
 
