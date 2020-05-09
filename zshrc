@@ -111,9 +111,6 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
-# ASDF
-. $(brew --prefix asdf)/asdf.sh
-
 # Go configuration
 export GOPATH=$HOME/code
 export PATH=$PATH:$GOPATH/bin
