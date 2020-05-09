@@ -38,6 +38,7 @@ brew install zsh
 brew install wget
 brew install pyenv
 brew install pyenv-virtualenv
+brew install asdf
 
 pyenv install 3.7.6
 pyenv global 3.7.6
