@@ -53,10 +53,6 @@ HIST_STAMPS="dd.mm.yyyy"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-if [[ -f ~/.zshconfig_private_pre ]]; then
-    source ~/.zshconfig_private_pre
-fi
-
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -103,11 +99,6 @@ alias vscode="/Applications/Visual\ Studio\ Code.app/contents/Resources/app/bin/
 # AWS CLI and Python bin
 export PATH=~/.local/bin:$PATH
 
-# NVM configuration
-export NVM_DIR="$HOME/.nvm"
-export NVM_LAZY_LOAD=true
-#export NVM_AUTO_USE=true
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # Load pyenv
 if command -v pyenv 1>/dev/null 2>&1; then
