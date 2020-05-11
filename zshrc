@@ -4,6 +4,10 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+if [[ -f ~/.zshconfig_private_pre ]]; then
+    source ~/.zshconfig_private_pre
+fi
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -59,6 +63,7 @@ fi
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  asdf
   zsh-autosuggestions
   minikube
   kubectl
@@ -110,13 +115,10 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
-
 # Go configuration
 export GOPATH=$HOME/code
 export PATH=$PATH:$GOPATH/bin
 
-# Kubesh in path
-export PATH="$PATH:~/.kubesh/bin"
 
 if [[ -f ~/.zshconfig_private ]]; then
     source ~/.zshconfig_private
