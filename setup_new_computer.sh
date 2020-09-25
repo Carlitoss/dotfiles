@@ -63,6 +63,9 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 echo "# Installing fast-syntax-highlighting..."
 git clone https://github.com/zdharma/fast-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
 
+echo "# Installing powerlevel10k..."
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
 ##### K8s #####
 echo "Installing kubectl"
 brew install kubectl
@@ -71,6 +74,14 @@ echo "Installing kubens and kubectx"
 brew install kubectx
 
 #### AWS ####
+echo "Installing AWS CLI V2..."
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+sudo installer -pkg AWSCLIV2.pkg -target /
+rm -rf AWSCLIV2.pkg
+
+echo "AWS IAM authenticator (K8s)"
+brew install aws-iam-authenticator
+
 echo "Installing assume-role"
 brew install remind101/formulae/assume-role
 
@@ -104,9 +115,6 @@ check_and_link "zshrc" ".zshrc"
 
 
 ################ POST-INSTALL NOTES ################
-
-echo "Remember to install AWS CLI in a new session with: "
-echo "pip3 install awscli --upgrade --user"
 
 echo "____________________"
 echo "____________________"
