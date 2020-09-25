@@ -113,6 +113,9 @@ chsh -s $(which zsh)
 # LINK .zshrc
 check_and_link "zshrc" ".zshrc"
 
+# LINK .p10k.zsh
+check_and_link "p10k.zsh" ".p10k.zsh"
+
 
 ################ POST-INSTALL NOTES ################
 
