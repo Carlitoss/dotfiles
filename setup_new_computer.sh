@@ -31,7 +31,14 @@ check_and_copy () {
 ########################################
 
 echo "# Installing homebrew..."
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> /Users/carlos.escura/.zprofile
+eval $(/opt/homebrew/bin/brew shellenv)
+
+echo 'set -gx LDFLAGS -L(xcrun --show-sdk-path)/usr/lib -Lbrew --prefix bzip2/lib' >> /Users/carlos.escura/.zprofile
+echo 'set -gx CFLAGS -L(xcrun --show-sdk-path)/usr/lib -Lbrew --prefix bzip2/lib' >> /Users/carlos.escura/.zprofile
+
 
 # Install brew tools
 brew install zsh
@@ -41,8 +48,18 @@ brew install pyenv-virtualenv
 brew install asdf
 brew install gnupg
 
-pyenv install 3.7.6
-pyenv global 3.7.6
+
+## Python ##
+# https://github.com/pyenv/pyenv/issues/1643
+
+brew install zlib
+brew install sqlite
+brew install bzip2
+brew install libiconv
+brew install libzip
+
+LDFLAGS="-L$(brew --prefix zlib)/lib -L$(brew --prefix bzip2)/lib" pyenv install 3.7.9
+pyenv global 3.7.9
 
 echo "# Installing Powerline fonts..."
 # clone
@@ -53,6 +70,8 @@ cd fonts
 # clean-up
 cd ..
 rm -rf fonts
+
+cp -R ./fonts ~/Library/Fonts
 
 echo "# Installing Oh-my-zsh..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -68,10 +87,10 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 
 ##### K8s #####
 echo "Installing kubectl"
-brew install kubectl
+# brew install kubectl
 
 echo "Installing kubens and kubectx"
-brew install kubectx
+# brew install kubectx
 
 #### AWS ####
 echo "Installing AWS CLI V2..."
