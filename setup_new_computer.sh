@@ -30,33 +30,40 @@ check_and_copy () {
 ############# BOOTSTRAPING #############
 ########################################
 
+echo "# Installing x86_64 homebrew"
+arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
 echo "# Installing homebrew..."
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> /Users/carlos.escura/.zprofile
+echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> ~/.zprofile
 eval $(/opt/homebrew/bin/brew shellenv)
 
-echo 'set -gx LDFLAGS -L(xcrun --show-sdk-path)/usr/lib -Lbrew --prefix bzip2/lib' >> /Users/carlos.escura/.zprofile
-echo 'set -gx CFLAGS -L(xcrun --show-sdk-path)/usr/lib -Lbrew --prefix bzip2/lib' >> /Users/carlos.escura/.zprofile
+echo 'set -gx LDFLAGS -L(xcrun --show-sdk-path)/usr/lib -Lbrew --prefix bzip2/lib' >> ~/.zprofile
+echo 'set -gx CFLAGS -L(xcrun --show-sdk-path)/usr/lib -Lbrew --prefix bzip2/lib' >> ~/.zprofile
 
+
+# Temporary homebrew alias (saved later on in .zshrc)
+alias ibrew='arch -x86_64 /usr/local/bin/brew'
+alias mbrew='arch -arm64e /opt/homebrew/bin/brew'
 
 # Install brew tools
-brew install zsh
-brew install wget
-brew install pyenv
-brew install pyenv-virtualenv
-brew install asdf
-brew install gnupg
+mbrew install zsh
+mbrew install wget
+mbrew install pyenv
+mbrew install pyenv-virtualenv
+mbrew install asdf
+mbrew install gnupg
 
 
 ## Python ##
 # https://github.com/pyenv/pyenv/issues/1643
 
-brew install zlib
-brew install sqlite
-brew install bzip2
-brew install libiconv
-brew install libzip
+mbrew install zlib
+mbrew install sqlite
+mbrew install bzip2
+mbrew install libiconv
+mbrew install libzip
 
 LDFLAGS="-L$(brew --prefix zlib)/lib -L$(brew --prefix bzip2)/lib" pyenv install 3.7.9
 pyenv global 3.7.9
@@ -87,10 +94,10 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 
 ##### K8s #####
 echo "Installing kubectl"
-# brew install kubectl
+ibrew install kubectl
 
 echo "Installing kubens and kubectx"
-# brew install kubectx
+ibrew install kubectx
 
 #### AWS ####
 echo "Installing AWS CLI V2..."
