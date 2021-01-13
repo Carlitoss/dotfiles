@@ -5,6 +5,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+ZSH_DISABLE_COMPFIX=true
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -102,6 +104,11 @@ alias flush-dns='sudo killall -HUP mDNSResponder;sudo killall mDNSResponderHelpe
 alias kubenamespace='kubectl config set-context $(kubectl config current-context) --namespace=$@'
 alias vscode="/Applications/Visual\ Studio\ Code.app/contents/Resources/app/bin/code"
 
+
+# M1 tweaks
+# Apple silicon double architecture support for brew
+alias ibrew='arch -x86_64 /usr/local/bin/brew'
+alias mbrew='arch -arm64e /opt/homebrew/bin/brew'
 
 # AWS CLI and Python bin
 export PATH=~/.local/bin:$PATH
