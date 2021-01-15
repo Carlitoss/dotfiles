@@ -39,34 +39,40 @@ echo "# Installing homebrew..."
 echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> ~/.zprofile
 eval $(/opt/homebrew/bin/brew shellenv)
 
-echo 'set -gx LDFLAGS -L(xcrun --show-sdk-path)/usr/lib -Lbrew --prefix bzip2/lib' >> ~/.zprofile
-echo 'set -gx CFLAGS -L(xcrun --show-sdk-path)/usr/lib -Lbrew --prefix bzip2/lib' >> ~/.zprofile
-
 
 # Temporary homebrew alias (saved later on in .zshrc)
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
 alias mbrew='arch -arm64e /opt/homebrew/bin/brew'
 
-# Install brew tools
-mbrew install zsh
-mbrew install wget
-mbrew install pyenv
-mbrew install pyenv-virtualenv
-mbrew install asdf
-mbrew install gnupg
-
 
 ## Python ##
 # https://github.com/pyenv/pyenv/issues/1643
+# https://github.com/pyenv/pyenv/issues/1746
 
-mbrew install zlib
-mbrew install sqlite
-mbrew install bzip2
-mbrew install libiconv
-mbrew install libzip
+### Better using native intel packages
 
-LDFLAGS="-L$(brew --prefix zlib)/lib -L$(brew --prefix bzip2)/lib" pyenv install 3.7.9
+ibrew install zlib
+ibrew install sqlite
+ibrew install bzip2
+ibrew install libiconv
+ibrew install libzip
+ibrew install openssl
+
+ibrew install pyenv
+ibrew install pyenv-virtualenv
+
+pyenv install 3.7.9
 pyenv global 3.7.9
+
+ibrew install asdf
+
+# Install brew tools
+mbrew install zsh
+mbrew install wget
+mbrew install gnupg
+
+
+
 
 echo "# Installing Powerline fonts..."
 # clone
